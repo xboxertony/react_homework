@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+.btn{
+    width: 100px;
+    height: 100px;
+    background-color: #EEEEED;
+    padding: 10px;
+    cursor: pointer;
+}
+.li_btn{
+    margin-top: 20px;
+    text-align: center;
+}

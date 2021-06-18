@@ -1,0 +1,16 @@
+.main{
+    background-color: #223344;
+    color: white;
+    height: 100px;
+    line-height: 100px;
+}
+.window{
+    background-color: #CCDDEE;
+    color: black;
+    height: 300px;
+    line-height: 300px;
+}
+.main,.window{
+    text-align: center;
+    font-size: 30px;
+}
