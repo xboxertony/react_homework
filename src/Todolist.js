@@ -1,51 +1,49 @@
-import React, { Component, Fragment, createRef } from 'react';
+import React, { useState, Fragment, useRef,useEffect } from 'react';
 import TodoItem from "./TodoItem"
 import style from "./Todolist.module.css"
 
-class TodoList extends Component {
-    state = {
+const TodoList = () => {
+
+    const [state,setState] = useState({
         arr: [],
         value: "測試紀錄"
+    })
+    const myref = useRef()
+    const onclick = () => {
+        setState({ value: "", arr: [{ id: Date.now(), text: state.value }, ...state.arr] })
     }
-    myref = createRef()
-    onclick = () => {
-        this.setState({ value: "", arr: [{ id: Date.now(), text: this.state.value }, ...this.state.arr] })
+    const onchange = (e) => {
+        setState({ ...state,value: e.target.value })
     }
-    onchange = (e) => {
-        this.setState({ value: e.target.value })
+    const onDelete = (idx) => {
+        const a = [...state.arr]
+        setState({ ...state,arr: a.filter(item => item.id !== idx) })
     }
-    onDelete = (idx) => {
-        const a = [...this.state.arr]
-        this.setState({ arr: a.filter(item => item.id !== idx) })
-    }
-    componentDidMount() {
-        this.myref.current.focus()
-    }
-    render() {
-        const { arr, value } = this.state
-        return (
-            <div>
-                <div className={style.sent}>
-                    <input type="text" value={value} onChange={this.onchange} ref={this.myref}></input>
-                    <button onClick={this.onclick}>新增紀錄</button>
-                </div>
-                <ul>
-                    {
-                        arr.map((item) => {
-                            return (
-                                <Fragment key={item.id}>
-                                    <div className={style.list}>
-                                        <TodoItem>{item.text}</TodoItem>
-                                        <button onClick={() => { this.onDelete(item.id) }} className={style.delete}>刪除</button>
-                                    </div>
-                                </Fragment>
-                            )
-                        })
-                    }
-                </ul>
+    useEffect(()=>{
+        myref.current.focus()
+    })
+    return (
+        <div>
+            <div className={style.sent}>
+                <input type="text" value={state.value} onChange={onchange} ref={myref}></input>
+                <button onClick={onclick}>新增紀錄</button>
             </div>
-        );
-    }
+            <ul>
+                {
+                    state.arr.map((item) => {
+                        return (
+                            <Fragment key={item.id}>
+                                <div className={style.list}>
+                                    <TodoItem>{item.text}</TodoItem>
+                                    <button onClick={() => { onDelete(item.id) }} className={style.delete}>刪除</button>
+                                </div>
+                            </Fragment>
+                        )
+                    })
+                }
+            </ul>
+        </div>
+    )
 }
 
 export default TodoList;
