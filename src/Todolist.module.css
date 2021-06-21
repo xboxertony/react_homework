@@ -35,3 +35,13 @@
     height: 100%;
     line-height: 40px;
 }
+.btn{
+    text-align: center;
+    display: block;
+    background-color: #555;
+    color: white;
+    width:70px;
+    padding: 10px;
+    margin: auto;
+    margin-top: 10px;
+}

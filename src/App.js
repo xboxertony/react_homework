@@ -22,10 +22,6 @@ const App = () => {
                     {
                         (list.map((item) => {
                             return <li className={style.li_btn} key={item.id}>
-                                <Link to={item.conn}
-                                    onClick={() => { onclick(item.id) }}
-                                    className={style.btn}
-                                >{item.text}</Link>
                             </li>
                         }))
                     }

@@ -1,6 +1,7 @@
 import React, { useState, Fragment, useRef,useEffect } from 'react';
 import TodoItem from "./TodoItem"
 import style from "./Todolist.module.css"
+import { Link } from "react-router-dom"
 
 const TodoList = () => {
 
@@ -42,6 +43,7 @@ const TodoList = () => {
                     })
                 }
             </ul>
+            <Link to="/" className={style.btn}>回首頁</Link>
         </div>
     )
 }
